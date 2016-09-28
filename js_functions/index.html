@@ -12,21 +12,28 @@
 <div id="game-area">
     <div class="card">
         <div class="front"><img src="imgs/british_flag.jpg" alt=""></div>
-        <div class="back"><img src="imgs/card_design.png" alt="Card Back"></div>
+        <div class="back" onclick="cardFlip(this)"><img src="imgs/card_design.png" alt="Card Back"></div>
     </div>
     <div class="card">
         <div class="front"><img src="imgs/path.jpg" alt=""></div>
-        <div class="back"><img src="imgs/card_design.png" alt="Card Back"></div>
+        <div class="back" onclick="cardFlip(this)"><img src="imgs/card_design.png" alt="Card Back"></div>
     </div>
     <div class="card">
         <div class="front"><img src="imgs/british_flag.jpg" alt=""></div>
-        <div class="back"><img src="imgs/card_design.png" alt="Card Back"></div>
+        <div class="back" onclick="cardFlip(this)"><img src="imgs/card_design.png" alt="Card Back"></div>
     </div>
     <div class="card">
         <div class="front"><img src="imgs/path.jpg" alt=""></div>
-        <div class="back"><img src="imgs/card_design.png" alt="Card Back"></div>
+        <div class="back" onclick="cardFlip(this)"><img src="imgs/card_design.png" alt="Card Back"></div>
     </div>
 </div>
-
+<!--Feature Set 1.2-->
+<button onclick="myMessage()">A button to activate a myFunction</button>
+<!--Feature Set 1.4-->
+<button onclick="console.log(add(2,5))">ADD</button>
+<!--Feature Set 2.1-->
+<button onclick="console.log(add2result)">ADD #2</button>
+<!--Function Inception-->
+<button onclick="console.log('The sum of ADD2 function performed twice to create 80 and 50, and then added together : ',result)">ADD2 PLUS ADD2, ADDED TOGETHER</button>
 </body>
 </html>
