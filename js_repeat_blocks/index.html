@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Repeat Blocks (Loops)</title>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        //Feature Set 1
+        console.log('------------ FEATURE SET 1');
+        var numbers = [1,2,3,4,5,6,7,8,9,10];
+        var numberLength = numbers.length;
+        console.log('Ascending');
+        for(var i=0; i <numberLength; i++){
+            console.log(numbers[i]);
+        }
+        console.log('Descending');
+        for(var i=numberLength -1; i >= 0; i--){
+            console.log(numbers[i]);
+        }
+        console.log('Ascending odds only');
+        for(var i=0; i < numberLength; i++){
+            if(numbers[i] %2 !=0) {
+                console.log(numbers[i]);
+            }
+        }
+        var mixedArray = [4, 56, 11, 13, 97, 22, 7, 36, 19, 5, 8, 10];
+        var arrayLength = mixedArray.length;
+        console.log('Mixed array ascending odds');
+        for(var i = 0; i < arrayLength; i++){
+            if(mixedArray[i] %2 !=0){
+                console.log(mixedArray[i]);
+            }
+        }
+
+        //Feature Set 2
+        console.log('------------ FEATURE SET 2');
+        var classRoom = {desk1: 'Stu', desk2: 'Peggy', desk3: 'LoneStar', desk4: 'George', desk5: 'Sheldon'};
+        for(var student in classRoom){
+            console.log(classRoom[student] + " is at " + student);
+        }
+
+        //Feature Set 3
+        console.log('------------ FEATURE SET 3');
+        var studentArray = [
+            {name: "Bob", grade: 87},
+            {name: "Fred", grade: 82},
+            {name: "George", grade: 93},
+            {name: "Robert", grade: 85}
+            ];
+        function findStudent(name) {
+            var i = 0;
+            while(i < studentArray.length){
+                if(studentArray[i].name == name){
+                    return 'Found ' + studentArray[i].name + ', their grade is: ' + studentArray[i].grade + ".";
+                }
+                i++;
+            }
+            return 'Student ' + name + ' not found.';
+        }
+        console.log("Test 1:", findStudent("Robert"));
+        console.log("Test 2:", findStudent("Bob"));
+        console.log("Test 3:", findStudent("Taylor"));
+
+        //Practice 1
+        console.log('------------ PRACTICE 1');
+        var thevarname = ['han','luke','leia','chewy','yoda','r2d2','c3po','obi-wan','lando','boba fett','vader','the emperor'];
+        for(var i=0; i < thevarname.length; i++){
+            if(thevarname[i] == 'han' || thevarname[i] == 'yoda' || thevarname[i] == 'luke' || thevarname[i] == 'leia' || thevarname[i] == 'chewy' || thevarname[i] == 'lando' || thevarname[i] == 'r2d2' || thevarname[i] == 'c3po' || thevarname[i] == 'obi-wan'){
+                console.log('confirmed good guy : ' + thevarname[i]);
+            }else{
+                console.log('confirmed baddie : ' + thevarname[i]);
+            }
+        }
+
+        //Practice 2
+        console.log('------------ PRACTICE 2');
+        var ships = {empire: 'tie fighter', rebel: 'x-wing', bounty_hunter: 'slave 1'};
+        for(var ship in ships){
+            if(ships[ship] == 'slave 1'){
+                console.log(ships[ship] + ' is a ' + ship + ' ship.');
+            }else{
+                console.log(ships[ship] + 's are ' + ship + ' ships.');
+            }
+        }
+
+        //Practice 3
+        console.log('------------ PRACTICE 3');
+        var droidArray = [
+            {name: 'r2d2', color: 'blue/white'},
+            {name: 'imperial probe', color: 'black'},
+            {name: 'c3po', color: 'gold'},
+            {name: 'bb-8', color: 'orange/white'}
+        ];
+        function droidSearch(droid_color){
+            var i = 0;
+            var droids = droidArray.length;
+            while(i < droids){
+                if(droidArray[i].color == droid_color){
+                    return 'Sir, we found one of them! It is ' + droidArray[i].color + ' and its name is ' + droidArray[i].name + ".";
+                }
+                i++;
+            }
+            return 'These are not the droids we\'re looking for.';
+        }
+        console.log('Search 1:', droidSearch('goldish'));
+        console.log('Search 2:', droidSearch('white and blue'));
+        console.log('Search 3:', droidSearch('black'));
+        $(document).ready(function () {
+            $('body').append(droidSearch('goldish'));
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
