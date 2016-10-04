@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Reference Data Types</title>
+    <script>
+        //Feature Set 1.0 Student Array
+        var student_array = ['Wade', 'Sean', 'Jef', 'Weikuan', 'Kevin'];
+        console.log(student_array[2]);
+        //Feature Set 1.1 Array Methods
+        console.log(student_array);
+        console.log(student_array.length);
+        student_array.push('Junie', 'Ever');
+        console.log(student_array.length);
+        console.log(student_array);
+
+        //Feature Set 2.0 Build an Object (yeah you know me)
+        var student = {};
+        student.firstName = 'Taylor';
+        student.lastName = 'Sturtz';
+        student.age = 32;
+        student.school = 'Learning Fuze';
+        student.questionList = [];
+        student.hasQuestion = false;
+        //Feature Set 2.1 Add Methods
+        student.greeting = function(){
+            return 'Hello, my name is ' + student.firstName;
+        };
+        student.aboutMe = function(){
+            return 'My full name is ' + student.firstName + student.lastName + ', I am ' + student.age + ' years old and I am a student at ' + student.school + '.';
+        };
+        student.askQuestion = function(question){
+            student.questionList.push(question);
+            student.hasQuestion = true;
+            return 'A question has been added to your list.'
+        };
+        student.answerQuestion = function(){
+            if (student.hasQuestion){
+                student.hasQuestion = false;
+                return (student.questionList.pop());
+        }else{
+                return 'You have no pending questions';
+            }
+        };
+        //Feature Set 2.2 Test Student
+        console.log('Student greeting : ' + student.greeting());
+        console.log('Student about me : ' + student.aboutMe());
+        console.log('Student answer question : ' + student.answerQuestion());
+        console.log('Student ask question : ' + student.askQuestion('Where\'s the beef?'));
+        console.log('Student ask question : ' + student.askQuestion('Where do babies come from?'));
+        console.log('Student ask question : ' + student.askQuestion('Why is the sky blue?'));
+        console.log('Question log before answering : ' + student.questionList);
+        console.log('Student answer question : ' + student.answerQuestion());
+        console.log('Question log after answering : ' + student.questionList);
+
+        //Quick console exercise
+        console.log('Here is my student object : ' + student);
+        console.log('Here is my student object : ', student); //nice
+    </script>
+</head>
+<body>
+
+</body>
+</html>
