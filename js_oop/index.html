@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS OOP</title>
+    <script>
+        //Feature Set 1
+
+        function Coin_stack(initial_amount) {
+            this.value = initial_amount;
+            this.add_coins = function(add_amount){
+                this.value += add_amount;
+            };
+            this.remove_coins = function(subtract_amount){
+                if(this.value >= subtract_amount){
+                    this.value -= subtract_amount;
+                }else if(this.value < subtract_amount){
+                    this.value -= this.value;
+                    return this.value;
+                }
+            }
+        }
+
+        my_coin_stack = new Coin_stack(50);
+
+        console.log('My coin stack contains : ' + my_coin_stack.value + ' coins');
+
+        //Feature Set 2
+
+        my_coin_stack.add_coins(15);
+        console.log('I have ' + my_coin_stack.value + ' coins in my coin stack');
+
+        my_coin_stack.remove_coins(37);
+        console.log('I have ' + my_coin_stack.value + ' coins in my coin stack');
+
+        my_coin_stack.remove_coins(55);
+        console.log('I have ' + my_coin_stack.value + ' coins in my coin stack');
+
+
+
+    </script>
+</head>
+<body>
+<h1>JavaScript OOP Prototype</h1>
+</body>
+</html>
