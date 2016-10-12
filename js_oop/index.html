@@ -14,12 +14,20 @@
             this.remove_coins = function(subtract_amount){
                 if(this.value >= subtract_amount){
                     this.value -= subtract_amount;
+                    return subtract_amount;
                 }else if(this.value < subtract_amount){
-                    this.value -= this.value;
-                    return this.value;
+                    var amount_removed = this.value;
+                    this.value = 0;
+                    return amount_removed;
                 }
             }
         }
+
+        Coin_stack.prototype.transfer_coins = function(transferred_from,transferred_amount){
+            var amount_removed = transferred_from.remove_coins(transferred_amount);
+            this.add_coins(amount_removed);
+            return amount_removed;
+        };
 
         my_coin_stack = new Coin_stack(50);
 
@@ -36,7 +44,17 @@
         my_coin_stack.remove_coins(55);
         console.log('I have ' + my_coin_stack.value + ' coins in my coin stack');
 
+        //Feature Set 3
 
+        erics_coins = new Coin_stack(50);
+        dans_coins = new Coin_stack(50);
+        console.log('Dan has ' + dans_coins.value + ' coins and Eric has ' + erics_coins.value);
+
+        erics_coins.transfer_coins(dans_coins,30);
+        console.log('Dan now has ' + dans_coins.value + ' coins and Eric now has ' + erics_coins.value);
+
+        dans_coins.transfer_coins(erics_coins,120);
+        console.log('Dan now has ' + dans_coins.value + ' coins and Eric now has ' + erics_coins.value);
 
     </script>
 </head>
