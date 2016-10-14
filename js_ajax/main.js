@@ -12,6 +12,7 @@ $(document).ready(function () {
                 console.log('AJAX Success function called, with the following result:', result);
                 //Feature Set 1
                 global_result = result;
+
                 //Feature Set 2
                 var all_movies = global_result.feed.entry;
                 console.log(all_movies);
@@ -19,14 +20,25 @@ $(document).ready(function () {
                 console.log(first_movie_info);
                 var first_movie_img = first_movie_info['im:image'][2].label; // Third image in first movie
                 console.log(first_movie_img);
-                //Feature Set 3
+
+                //Feature Set 3 and 4
                 for (var i=0; i<all_movies.length; i++){
-                    $('#main').append($('<img>').attr('src',all_movies[i]['im:image'][2].label));
+
+                    //First stab at it
+                    /*$('#main').append($('<img>').attr('src',all_movies[i]['im:image'][2].label));
                     console.log(all_movies[i]['im:image'][2].label);
+                    $('#main').append($('<p>').text('Movie title: ' + all_movies[i]['im:name'].label));
+                    console.log(all_movies[i]['im:name'].label);
+                    $('#main').append($('<p>').text('Directed by: ' + all_movies[i]['im:artist'].label));
+                    console.log(all_movies[i]['im:name'].label);*/
 
+                    //Chaining appends - this seems more efficient...
+                    $('#main')
+                        .append($('<img>').attr('src',all_movies[i]['im:image'][2].label))
+                        .append($('<p>').text('Movie title: ' + all_movies[i]['im:name'].label))
+                        .append($('<p>').text('Directed by: ' + all_movies[i]['im:artist'].label))
+                    ;
                 }
-                //Feature Set 4
-
             }
         });
         console.log('End of click function');
