@@ -4,9 +4,72 @@
     <meta charset="UTF-8">
     <title>Angular Controllers</title>
     <!-- Add the AngularJS CDN below -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 </head>
-<body>
-
+<body ng-app="taylorsWickedCoolAngularApp">
+<div ng-controller="formController as fc">
+    First Name: <br><input type="text" ng-model="fc.formObj.fName"><br>
+    Last Name: <br><input type="text" ng-model="fc.formObj.lName"><br>
+    Email: <br><input type="text" ng-model="fc.formObj.email"><br>
+    Comments: <br><textarea ng-model="fc.formObj.comments" ng-disabled="fc.outtaCharacters()"></textarea><br>
+    Remaining Characters: <br>
+    <p ng-bind="fc.remainingText()"></p><br>
+    <button type="button" ng-click="fc.pushFormToArray()">Add!</button>
+    <div ng-controller="tableController as tc">
+        Total Entries:
+        <p ng-bind="tc.totalEntries()"></p>
+        <table>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Comments</th>
+            </tr>
+            <tr ng-repeat="info in formArray">
+                <td>{{ info.fName + ' ' + info.lName }}</td>
+                <td>{{ info.email }}</td>
+                <td>{{ info.comments }}</td>
+                <td><button ng-click="tc.deleteRow($index)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>{{ fc.formObj.fName }}</td>
+                <td>{{ fc.formObj.lName }}</td>
+                <td>{{ fc.formObj.email }}</td>
+                <td>{{ fc.formObj.comments }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    var app = angular.module('taylorsWickedCoolAngularApp', []);
+    app.controller('formController', function ($scope) {
+        this.formObj = {};
+        $scope.formArray = [];
+        this.maxLength = 25;
+        this.pushFormToArray = function () {
+            $scope.formArray.push(this.formObj);
+            this.formObj = {};
+            this.formObj.comments = '';
+        };
+        this.remainingText = function () {
+            return this.maxLength - this.formObj.comments.length;
+        };
+        this.outtaCharacters = function () {
+            if (this.remainingText() <= 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+    });
+    app.controller('tableController', function ($scope) {
+        this.deleteRow = function (table_index) {
+            $scope.formArray.splice(table_index, 1);
+        };
+        this.totalEntries = function () {
+            return $scope.formArray.length;
+        };
+    })
+</script>
 </body>
 </html>
