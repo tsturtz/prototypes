@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PHP Super Globals</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<form method="get" action="index.php">
+    <input id="yoyoyo" type="checkbox" name="yo" value="howdy">Howdy?<br>
+    <textarea id="message" name="message" rows="5" cols="10" placeholder="say some stuff!"></textarea><br>
+    <button type="button" onclick="getAtMe()">AJAX call</button>
+</form>
+
+<script>
+    function getAtMe() {
+
+        if ($('#yoyoyo').is(":checked")) {
+            chexbox = 'YO!';
+        } else {
+            chexbox = 'WAHHH';
+        }
+
+        var form_data = {
+            yo: chexbox,
+            message: $('#message').val()
+        };
+
+        $.ajax({
+            data: form_data,
+            dataType: 'text',
+            method: 'get',
+            url: 'index.php',
+            success: function (response) {
+                console.log(response);
+            }
+        })
+    }
+</script>
+
+</body>
+</html>
