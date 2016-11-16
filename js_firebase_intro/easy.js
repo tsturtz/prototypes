@@ -24,26 +24,48 @@ $(document).ready(function(){
 });
 
 // Add config data
-
+var config = {
+    apiKey: "AIzaSyAKKPSS4ILUmKpDa-wvXDFd5bwTA_swJKk",
+    authDomain: "lfzfirebaseintro-24843.firebaseapp.com",
+    databaseURL: "https://lfzfirebaseintro-24843.firebaseio.com",
+    storageBucket: "lfzfirebaseintro-24843.appspot.com",
+    messagingSenderId: "907118306284"
+};
 // Init firebase
-
+firebase.initializeApp(config);
 // Create firebase ref
-
+var fbRef = firebase.database();
 // Create event listener for the students node in your database
-
+fbRef.ref('students').on('value', function(current) {
+    updateDom(current.val());
+});
 // Complete the addStudent function
-function addStudent(sid, sname, course, grade){
-
+function addStudent(sid, sname, course, grade) {
+    var stud = {
+        student_id: sid,
+        student_name: sname,
+        course: course,
+        grade: grade
+    };
+    fbRef.ref('students').push(stud);
 }
-
 // complete the delete function
 function deleteStudent(key, ele){
-
+    console.log(key);
+    if (confirm("Are you sure?") == true) {
+        fbRef.ref('students/' + key).remove();
+    }
 }
 
 // complete the update function
 function updateStudent(id){
-
+    var edited = {};
+    var formData = getFormData();
+    edited['students/' + id + '/student_id'] = formData.sid;
+    edited['students/' + id + '/student_name'] = formData.sname;
+    edited['students/' + id + '/course'] = formData.course;
+    edited['students/' + id + '/grade'] = formData.grade;
+    fbRef.ref().update(edited);
 }
 
 function updateDom(d){
