@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js_regex</title>
+    <script>
+        // Feature Set 1
+        var fs1a = /e/g;
+        var fs1b = /e/gi;
+        var fs1c = /st[ai]r/g;
+        // Feature Set 2
+        var phoneNumber = /\(?1?[ -]?[0-9]{3}\)?[ -]*[0-9]{3}[ -]*[0-9]{4}/g;
+        var passwordRegex = /^[[:alpha:]]{1}(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[[:alnum:]]{6,32}$/g;
+    </script>
+</head>
+<body>
+<h1>JavaScript - Regular Expressions</h1>
+</body>
+</html>
